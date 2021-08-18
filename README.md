@@ -1,4 +1,4 @@
-# Botfundamentals
+# Bot fundamentals
 ## Here is the easiest way to create bots which can help you get started creating your first bot experience and expose it to all different channels.
 1. Download the source code.
 2. Login to portal.azure.com
