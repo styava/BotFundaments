@@ -1,0 +1,40 @@
+[import](common.lg)
+
+
+# TextInput_Prompt_OYGwMb()
+[Activity
+    Text = Hi, welcome to Styava's event of 'Creating Text and Voice Bots using Bot Framework'. Am I speaking with Kushal?
+]
+
+# TextInput_Prompt_TgkMYw()
+[Activity
+    Text = May I know your name?
+]
+
+# ChoiceInput_Prompt_oX2r1T()
+[Activity
+    Text = How would you like to connect. Voice call , video call or chat?
+]
+
+# SendActivity_h3XNj4()
+[Activity
+    Text = Please wait. I will send a link to join the meeting request on your mobile number. Please enter your mobile number followed by '#' sign.
+]
+
+# TextInput_Prompt_tfj3Ri()
+[Activity
+    Text = ${TextInput_Prompt_tfj3Ri_text()}
+]
+
+# TextInput_Prompt_tfj3Ri_text()
+-  
+-  
+# SendActivity_DjC3Zk()
+[Activity
+    Text = Thank you
+]
+
+# SendActivity_m1xnFO()
+[Activity
+    Text = Please wait while we connect with our representation.
+]

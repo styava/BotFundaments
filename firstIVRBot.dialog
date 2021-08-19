@@ -1,0 +1,221 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "$designer": {
+      "name": "firstIVRBot",
+      "description": "",
+      "id": "BHdCVR"
+    }
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "jojosl"
+          },
+          "assignments": [
+            {
+              "property": "user.finalnumber",
+              "value": "+"
+            },
+            {
+              "property": "user.loopIndex",
+              "value": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "OYGwMb"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_OYGwMb()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.nameInput"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "Fvg0hL"
+          },
+          "condition": "equals(user.nameInput,\"yes\")",
+          "actions": [],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.TextInput",
+              "$designer": {
+                "id": "TgkMYw"
+              },
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": false,
+              "allowInterruptions": false,
+              "prompt": "${TextInput_Prompt_TgkMYw()}",
+              "unrecognizedPrompt": "",
+              "invalidPrompt": "",
+              "defaultValueResponse": "",
+              "property": "user.customName"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "oX2r1T"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "prompt": "${ChoiceInput_Prompt_oX2r1T()}",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or "
+          },
+          "choices": [
+            "voice call",
+            "video call",
+            "chat"
+          ],
+          "property": "user.choice"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "S85I3h"
+          },
+          "condition": "user.choice",
+          "cases": [
+            {
+              "value": "voice call",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "m1xnFO"
+                  },
+                  "activity": "${SendActivity_m1xnFO()}"
+                }
+              ]
+            },
+            {
+              "value": "video call",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "h3XNj4"
+                  },
+                  "activity": "${SendActivity_h3XNj4()}"
+                },
+                {
+                  "$kind": "Microsoft.Foreach",
+                  "$designer": {
+                    "id": "rHhERI"
+                  },
+                  "index": "dialog.foreach.index",
+                  "value": "dialog.foreach.value",
+                  "itemsProperty": "user.loopIndex",
+                  "actions": [
+                    {
+                      "$kind": "Microsoft.TextInput",
+                      "$designer": {
+                        "id": "tfj3Ri"
+                      },
+                      "disabled": false,
+                      "maxTurnCount": 3,
+                      "alwaysPrompt": false,
+                      "allowInterruptions": false,
+                      "unrecognizedPrompt": "",
+                      "invalidPrompt": "",
+                      "defaultValueResponse": "",
+                      "property": "user.phonenumber",
+                      "prompt": "${TextInput_Prompt_tfj3Ri()}"
+                    },
+                    {
+                      "$kind": "Microsoft.IfCondition",
+                      "$designer": {
+                        "id": "FnaD8r"
+                      },
+                      "condition": "equals(user.phonenumber,''#')",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BreakLoop",
+                          "$designer": {
+                            "id": "s1DzfK"
+                          }
+                        }
+                      ],
+                      "elseActions": [
+                        {
+                          "$kind": "Microsoft.SetProperty",
+                          "$designer": {
+                            "id": "u6POSQ"
+                          },
+                          "value": "${user.finalnumber}${user.phonenumber}",
+                          "property": "user.finalnumber"
+                        }
+                      ]
+                    },
+                    {
+                      "$kind": "Microsoft.SetProperty",
+                      "$designer": {
+                        "id": "omnFLd"
+                      },
+                      "property": "user.phonenumber",
+                      "value": "=null"
+                    }
+                  ]
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "DjC3Zk"
+                  },
+                  "activity": "${SendActivity_DjC3Zk()}"
+                }
+              ]
+            },
+            {
+              "value": "chat"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
+  "generator": "firstIVRBot.lg",
+  "id": "firstIVRBot",
+  "recognizer": "firstIVRBot.lu.qna"
+}
